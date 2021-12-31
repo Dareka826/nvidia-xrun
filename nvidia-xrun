@@ -53,7 +53,7 @@ function load_modules {
   for module in "${MODULES_LOAD[@]}"
   do
     echo "Loading module ${module}"
-    execute "sudo modprobe ${module}"
+    execute "sudo modprobe --ignore-install ${module}"
   done
 }
 
