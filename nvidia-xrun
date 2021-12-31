@@ -74,7 +74,7 @@ fi
 # load config file
 . /etc/default/nvidia-xrun
 
-# this is used by the systemd service to turn off the gpu at boot
+# this is used by the system service to turn the gpu on or off at boot
 if [[ "$TURN_OFF_GPU_ONLY" == '1' ]]; then
   turn_off_gpu && exit 0
 fi
