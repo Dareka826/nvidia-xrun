@@ -10,15 +10,21 @@ It started with a revelation that bumblebee in current state offers very poor pe
 
 Currently sudo is required as the script needs to wake up GPU, modprobe the nvidia driver and perform cleanup afterwards.
 
-The systemd service can be used to completely remove the card from the kernel
+The system service can be used to completely remove the card from the kernel
 device tree (so that it won't even show in `lspci` output), and this will
 prevent the nvidia module to be loaded, so that we can take advantage of the
 kernel PM features to keep the card switched off.
 
-The service can be enabled with this command:
+The systemd service can be enabled with this command:
 
 ```
 # systemctl enable nvidia-xrun-pm
+```
+
+The openrc service can be enabled with this command:
+
+```
+# rc-update add nvidia-xrun-pm default
 ```
 
 When the nvidia-xrun command is used, the device is added again to the tree so that the nvidia module can be loaded properly: nvidia-xrun will remove the device and enable PM again after the application terminates.
@@ -31,6 +37,7 @@ When the nvidia-xrun command is used, the device is added again to the tree so t
 * **/etc/X11/xinit/nvidia-xinitrc.d** - custom xinitrc scripts directory
 * **/etc/X11/nvidia-xorg.conf.d** - custom X config directory
 * **/etc/systemd/system/nvidia-xrun-pm.service** systemd service
+* **/etc/init.d/nvidia-xrun-pm** openrc service
 * **/etc/default/nvidia-xrun** - nvidia-xrun config file
 * **/usr/share/xsessions/nvidia-xrun-openbox.desktop** - xsession file for openbox
 * **/usr/share/xsessions/nvidia-xrun-plasma.desktop** - xsession file for plasma
