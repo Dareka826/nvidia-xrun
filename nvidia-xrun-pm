@@ -1,0 +1,21 @@
+#!/sbin/openrc-run
+description="Remove Nvidia GPU from kernel devices list and enable PM"
+
+start() {
+    einfo "Turning off the nvidia GPU"
+    TURN_OFF_GPU_ONLY=1 /usr/bin/nvidia-xrun
+}
+
+status() {
+    . /etc/default/nvidia-xrun
+    if [ -d "/sys/bus/pci/devices/${DEVICE_BUS_ID}" ]; then
+        ewarn "The GPU is enabled"
+    else
+        einfo "The GPU is disabled"
+    fi
+}
+
+stop() {
+    einfo "Turning on the nvidia GPU"
+    TURN_ON_GPU_ONLY=1 /usr/bin/nvidia-xrun
+}
