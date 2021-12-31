@@ -1,8 +1,8 @@
 # PKGBUILD adapted from aur/nvidia-xrun-git
 _pkgname=nvidia-xrun
 pkgname=$_pkgname"-openrc-amd-git"
-pkgver=0.4
-pkgrel=1
+pkgver=0.4.4.gf440fe4
+pkgrel=2
 pkgdesc="nvidia-xrun with openrc support and AMD/Nvidia instead of Intel"
 arch=("any")
 url="https://github.com/Dareka826/nvidia-xrun"
