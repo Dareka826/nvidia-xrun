@@ -79,6 +79,10 @@ if [[ "$TURN_OFF_GPU_ONLY" == '1' ]]; then
   turn_off_gpu && exit 0
 fi
 
+if [[ "$TURN_ON_GPU_ONLY" == '1' ]]; then
+    turn_on_gpu && exit 0
+fi
+
 if [[ $EUID -eq 0 ]]; then
    echo "This script must not be run as root unless TURN_OFF_GPU_ONLY=1 is set" >&2
    exit 1
